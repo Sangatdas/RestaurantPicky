@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RestaurantPicky</title>
+
+	{% include "snippets/css/css.html" %}
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">RestaurantPicky</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'home' %}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'about' %}">About</a>
+	      </li>
+	      {% if request.user.is_authenticated %}
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'restaurants:list' %}">Restaurants</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'menu:list' %}">Menu</a>
+	      </li>
+	      {% endif %}
+	    </ul>
+	  </div>
+	</nav>
+	<p>
+		<div class="container">
+			{% block content %} {% endblock content %}
+		</div>
+	</p>
+	{% include "snippets/js/js.html" %}
+
+</body>
+</html>
+

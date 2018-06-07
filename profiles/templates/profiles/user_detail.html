@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h3>{{ user.username }}</h3>
+	<p>{% include "snippets/follow-form.html" with username=user.username is_following=is_following %}</p>
+	<hr>
+	<p>
+	<form class="form" method="GET" action=".">
+		<input type="text" placeholder="Search" name="q" value="{{ request.GET.q }}">
+		<button class="btn btn-default" type="submit">Search</button>
+	</form>
+	<hr>
+	<h4>My Restaurants</h4>
+	<ul>
+		{% if locations %}
+			{% for rest in locations %}
+				<p>
+					<li><b>{{ rest.name }}</b>
+						<a href="{{ request.path }}?q={{ rest.location }}">{{ rest.location }}</a> , 
+						<a href="{{ request.path }}?q={{ rest.city }}">{{ rest.city }}</a> | 
+						<a href="{{ request.path }}?q={{ rest.category }}">{{ rest.category }}</a><br>
+						{% if rest.item_set.all %}
+						<h6>Items</h6>
+						<ul>
+							{% for item in rest.item_set.all %}
+								{% if item in user.item_set.all %}
+									<li>{{ item }}<br>
+									{% for ing in item.get_contents %}
+										<a href="{{ request.path }}?q={{ ing }}" style="margin-right: 4px; background-color: #ddd;">{{ ing }}</a>
+									{% endfor %}
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+						{% else %}
+							<h7 class="text-muted">No Items to show</h7>
+						{% endif %}
+					</li>
+				</p>	
+			{% endfor %}
+		{% else %}
+			<h6 class="text-muted">No Restaurants to show</h6>
+		{% endif %}
+	</ul>
+	</p>
+{% endblock content %}
+

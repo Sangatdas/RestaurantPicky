@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h3>Menu Items <a href="{% url 'menu:create' %}">Add</a></h3>
+
+	<ul>
+	{% for obj in object_list %}
+		<p>
+			<li><a href="{% url 'menu:detail' pk=obj.id%}">{{obj.name}}</a>
+				<br>Restaurant: {{obj.restaurant.name}}
+				<br>Created on: {{ obj.timestamp }}
+				<br>Last Updated: {{ obj.updated }}
+			</li>
+		</p>
+	{% endfor %}
+	</ul>
+
+{% endblock content %}
+

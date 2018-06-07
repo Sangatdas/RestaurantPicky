@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h3>My Restaurants <a href="{% url 'restaurants:create' %}">Add</a></h3>
+
+	<ul>
+	{% for obj in object_list %}
+		<li><a href="{% url 'restaurants:detail' slug=obj.slug %}">{{obj}}</a>
+		<br>Created On: {{obj.timestamp}}
+		<br>Last Updated: {{obj.updated}}
+		</li>
+	{% endfor %}
+	</ul>
+
+{% endblock content %}
+

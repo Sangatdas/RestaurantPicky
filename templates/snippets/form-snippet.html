@@ -1,0 +1,30 @@
+<form method="POST"> {% csrf_token %}
+	{{ form.as_p }}
+<!-- 	<table>
+		<tr>
+			<div class="form-group">
+				<td><label for="name">Restaurant Name</label></td>
+				<td><input type="text" name="name" id="name" placeholder="Name"></td>
+			</div>
+		</tr>
+		<tr>	
+			<div class="form-group">
+				<td><label for="location">Restaurant Location</label></td>
+				<td><input type="text" name="location" id="location" placeholder="Location"></td>
+			</div>
+		</tr>
+		<tr>	
+			<div class="form-group">
+				<td><label for="city">Restaurant City</label></td>
+				<td><input type="text" name="city" id="city" placeholder="City"></td>
+			</div>
+		</tr>
+		<tr>	
+			<div class="form-group">
+				<td><label for="category">Restaurant Category</label></td>
+				<td><input type="text" name="category" id="category" placeholder="Category"></td>
+			</div>
+		</tr>
+	</table>	
+ -->	<button class="btn btn-success" type="submit">Save</button>
+</form>

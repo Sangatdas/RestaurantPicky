@@ -27,10 +27,26 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Setting up email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'yourusername@youremail.com'
+EMAIL_HOST_PASSWORD = 'your password'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Your name <you@email.com>'
+
+# For errors on servers
+ADMINS = (
+    ('You', 'you@email.com'),
+)
+MANAGERS = ADMINS
 
 # Application definition
 
 INSTALLED_APPS = [
+    'restaurants',
+    'menu',
+    'profiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,10 +67,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'RestaurantPicky.urls'
 
+LOGIN_URL = "/login/"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGOUT_REDIRECT_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
